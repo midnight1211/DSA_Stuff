@@ -31,6 +31,9 @@ class Treap {
         Treap() : rng(std::random_device{}()), dist(0.0, 1.0) {}
         ~Treap() { clear(root); }
 
+        Node<T>* getRoot() const { return root; }
+        void setRoot(Node<T>* new_root) { root = new_root; }
+
         void insert(const T& key);
         void remove(const T& key);
 
