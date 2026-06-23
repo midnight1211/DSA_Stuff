@@ -1,0 +1,140 @@
+========================================================================
+  MAX CUT ALGORITHM SUITE
+========================================================================
+  Generating graph: n=100, p=0.15, weighted=yes
+
+========================================================================
+  GRAPH STRUCTURE
+========================================================================
+  Nodes         : 100
+  Edges         : 802
+  Total Weight  : 41576
+  Weighted      : Yes
+  Density       : 0.1620
+  Min/Avg/Max Degree: 9 / 16.04 / 23
+  (Adjacency list suppressed for n > 30)
+========================================================================
+  ALGORITHM RESULTS
+========================================================================
+
+  Running Greedy 1/2...
+------------------------------------------------------------------------
+  >>  Greedy 1/2-Approximation
+------------------------------------------------------------------------
+  Cut Weight   : 26522 / 41576
+  Ratio W/ΣW   : 63.7916%
+  [##########################..............]
+  Runtime      : 0.0000 ms
+  Notes        : Deterministic; guaranteed >= OPT/2. O(n+m) time.
+
+  Running Monte Carlo...
+------------------------------------------------------------------------
+  >>  Monte Carlo Randomized
+------------------------------------------------------------------------
+  Cut Weight   : 23058 / 41576
+  Ratio W/ΣW   : 55.4599%
+  [######################..................]
+  Runtime      : 4.0118 ms
+  Iterations   : 500
+  Notes        : E[cut] = W/2 per trial. Best of 500 trials.
+
+  Running Las Vegas...
+------------------------------------------------------------------------
+  >>  Las Vegas Randomized
+------------------------------------------------------------------------
+  Cut Weight   : 23299 / 41576
+  Ratio W/ΣW   : 56.0395%
+  [######################..................]
+  Runtime      : 17.2360 ms
+  Iterations   : 2000
+  Notes        : Target ratio=0.800000. Max trials reached after 2000 trial(s).
+
+  Running Derandomized...
+------------------------------------------------------------------------
+  >>  Derandomized (Conditional Expectations)
+------------------------------------------------------------------------
+  Cut Weight   : 26522 / 41576
+  Ratio W/ΣW   : 63.7916%
+  [##########################..............]
+  Runtime      : 0.0000 ms
+  Notes        : Deterministic; same ≥W/2 guarantee as MC, identical logic to greedy but derived from probability theory.
+
+  Running GW Classic...
+------------------------------------------------------------------------
+  >>  Goemans-Williamson Classic
+------------------------------------------------------------------------
+  Cut Weight   : 16104 / 41576
+  Ratio W/ΣW   : 38.7339%
+  [###############.........................]
+  Runtime      : 134.2101 ms
+  Iterations   : 300
+  Notes        : SDP obj=21410; embed_dim=50. Theory: cut ≥ 0.878·OPT.
+
+  Running GW Multi-Restart...
+------------------------------------------------------------------------
+  >>  Goemans-Williamson Multi-Restart
+------------------------------------------------------------------------
+  Cut Weight   : 27104 / 41576
+  Ratio W/ΣW   : 65.1915%
+  [##########################..............]
+  Runtime      : 153.4229 ms
+  Iterations   : 20
+  Notes        : Best of 20 independent SDP restarts. SDP obj≈14931.
+
+  Running GW Bipartite-Aware...
+------------------------------------------------------------------------
+  >>  Goemans-Williamson Bipartite-Aware
+------------------------------------------------------------------------
+  Cut Weight   : 26299 / 41576
+  Ratio W/ΣW   : 63.2552%
+  [#########################...............]
+  Runtime      : 138.2805 ms
+  Iterations   : 40
+  Notes        : Rounding threshold biased by antipodality signal. 40 hyperplane trials.
+
+  Running GW Semi-Random...
+========================================================================
+  COMPARATIVE SUMMARY TABLE
+========================================================================
+Algorithm                                 Cut         Ratio%    Time(ms)    Best? 
+------------------------------------------------------------------------
+Greedy 1/2-Approximation                  26522       63.79     0.000       
+Monte Carlo Randomized                    23058       55.46     4.012       
+Las Vegas Randomized                      23299       56.04     17.236      
+Derandomized (Conditional Expectations)   26522       63.79     0.000       
+Goemans-Williamson Classic                16104       38.73     134.210     
+Goemans-Williamson Multi-Restart          27104       65.19     153.423       ★
+Goemans-Williamson Bipartite-Aware        26299       63.26     138.280     
+Goemans-Williamson Semi-Random            26792       64.44     163.001     
+------------------------------------------------------------------------
+
+  Theoretical W/2 lower bound : 20788.00
+  GW theory bound (0.878·OPT): ≥ 23797.31 (approximation; OPT estimate = best found = 27104)
+========================================================================
+  EXPERIMENTAL STATISTICS
+========================================================================
+  Total algorithms run  : 8
+  Best cut found        : 27104 (65.19% of total weight)
+  Worst cut found       : 16104 (38.73%)
+  Cut spread (best-worst): 11000
+  Total runtime         : 610.162 ms
+
+  Approximation quality (ratio vs best found):
+    Greedy 1/2-Approximation                  97.85%
+    Monte Carlo Randomized                    85.07%
+    Las Vegas Randomized                      85.96%
+    Derandomized (Conditional Expectations)   97.85%
+    Goemans-Williamson Classic                59.42%
+    Goemans-Williamson Multi-Restart          100.00%
+    Goemans-Williamson Bipartite-Aware        97.03%
+    Goemans-Williamson Semi-Random            98.85%
+
+  Goemans-Williamson Analysis:
+    The GW rounding theorem guarantees:
+    E[cut(r)] / OPT ≥ min_{0≤θ≤π} (2/π · θ / (1-cos θ)) ≈ 0.8785
+    where θ = arccos(x_{ij}) for the SDP relaxation variable x_{ij}.
+    This ratio beats the random 1/2 bound by ~75.7% relatively.
+    (Under Unique Games Conjecture, 0.878 is optimal for poly-time.)
+========================================================================
+  DONE
+========================================================================
